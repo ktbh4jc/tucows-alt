@@ -17,4 +17,9 @@ This is where I will walk you through my general approach to the project.
 
 
 ## Questions (and my assumed answers)
-Spot of context: I received this takehome on a Friday where I already had afternoon plans and want to make the 4 day turnaround, meaning I am not going to have a chance to ask my questions before the weekend. As such, I am going to just list the questions I would normally ask here, along with my assumptions. 
+Spot of context: I received this takehome on a Friday where I already had afternoon plans and want to make the 4 day turnaround, meaning I am not going to have a chance to ask my questions before the weekend. As such, I am going to just list the questions I would normally ask here, along with my assumptions.
+
+1) Is there any expectation for how this should be run? IE: Local native, local docker, aws, etc?
+    > I am guessing local is fine, but I am going to try to dockerize my services.
+2) Do we have any concept of a user or of authentication?
+    > I'm gonna guess no as there is nothing in the prompt. 

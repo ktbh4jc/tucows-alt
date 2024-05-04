@@ -1,5 +1,5 @@
 
-Shamelessly copied from https://redgregory.notion.site/Mermaid-Graph-Icons-cafb5c5b2f51473399a62c75501a3f33
+Shamelessly copied from https://redgregory.notion.site/Mermaid-Graph-Icons-cafb5c5b2f51473399a62c75501a3f33 and then slightly tweaked
 
 More icons in https://super.so/icons 
 

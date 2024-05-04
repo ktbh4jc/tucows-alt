@@ -9,7 +9,7 @@ These are tools that you will need in order to run this solution
 ## Enhancements
 These are tools that I used while developing this solution that will make it easier to interact with, but aren't necessarily mandatory. 
 
-- VS Code - IDE I used in development. I also used the following extensions:
+- VS Code - IDE I used in development. I also used the following extension, which can be installed by hitting `ctrl` + `p` and pasting in the install string.
   - [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
     - Enables mermaid diagrams to render in VS Code
     - install string: `ext install bierner.markdown-mermaid`
