@@ -17,7 +17,7 @@ Initial thoughts: this feels like it could be overcomplicating things, so I am g
 ```mermaid
 flowchart LR;
 
-	classDef white fill:white,stroke:#000,stroke-width:2px,color:#000
+  classDef white fill:white,stroke:#000,stroke-width:2px,color:#000
 
   User("<img src='https://super.so/icon/dark/user.svg'; width='25' /> User"):::white
 

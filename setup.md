@@ -4,7 +4,12 @@
 I am doing this on my Ubuntu computer, so I will be writing these instructions assuming a unix-like environment. Any specific installation notes will be for Ubuntu. I expect this would work on MacOS as well, but am unable to check any specific changes. Fun enough, I have a new mini pc coming in the mail today so I will be able to really test from zero and insure I am not missing any requirements. 
 
 ## Requirements
-These are tools that you will need in order to run this solution
+- Go
+  - https://go.dev/doc/install 
+- Docker
+  - https://docs.docker.com/engine/install/ubuntu/
+- Make
+  - `sudo apt-get -y install make` for ubuntu, `brew install make` on mac
 
 ## Enhancements
 These are tools that I used while developing this solution that will make it easier to interact with, but aren't necessarily mandatory. 
