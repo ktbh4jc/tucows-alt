@@ -9,6 +9,36 @@ I also like to include debug checks that effectively bypass the order management
 
 ## Final Design
 
+### Database Services
+So, why the two services? In order to maximize the value of async, I didn't want my rest api to have to wait for database writes. I also wanted to avoid having both sync and async db interaction in the same service if it could be avoided. In a larger environment there would need to be proper monitoring as this has the potential downside of there being some really hard to track down bugs. In the past I have used DataDog to monitor these kinds of microservice chains to better hunt down any bugs. Additionally there should be a validate and lock step somewhere in the chain. Something like this:
+
+```mermaid
+sequenceDiagram
+    API-)ValidationService: New order
+    ValidationService->>API: Request Ingested
+    ValidationService->>DatabaseReadService: Get relevant info
+    DatabaseReadService->>Database: Get info
+    Database->>DatabaseReadService: Response
+    DatabaseReadService->>ValidationService: Response
+    ValidationService->>ValidationService: Validation
+    ValidationService-)OrderProcessor: Order
+    OrderProcessor ->> OrderProcessor: Process Order
+    OrderProcessor -)DatabaseWriteService: OrderEntry
+    OrderProcessor -)PaymentService: OrderEntry
+    DatabaseWriteService -) Database: OrderEntry
+    PaymentService ->> PaymentService: Process Payment
+    PaymentService-) DatabaseWriteService: Payment Result
+    DatabaseWriteService-)Database: Payment Result
+
+```
+Validation and DB read could be merged into one service potentially. Read from the DB once at the very start, lock the relevant elements, then write to it at the very end to unlock them. 
+
+### Repeated Types
+In a production environment I would suggest creating a shared types package that these microservices would import, ideally through a protocol buffer or similar serialized approach to save time and standardize. 
+
+### Intent
+I'm including an intent on all calls to make them easier to trace through the process. In a more fleshed out version of this solution, they could be used as part of the validation and locking step in the DB. 
+
 ## Iteration as I worked
 
 ### V0.0 
