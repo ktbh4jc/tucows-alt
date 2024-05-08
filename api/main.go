@@ -18,6 +18,7 @@ func main() {
 		os.Exit(1)
 	}
 	hp := NewHelloProducerImpl(p, "HELLO")
-	server := NewAPIServer(":8080", hp)
+	op := NewOrderProducerImpl(p, "ORDER")
+	server := NewAPIServer(":8080", hp, op)
 	server.Run()
 }

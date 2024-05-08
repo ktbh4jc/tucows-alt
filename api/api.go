@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -11,12 +12,14 @@ import (
 type APIServer struct {
 	listenAddr    string
 	helloProducer HelloProducer
+	orderProducer OrderProducer
 }
 
-func NewAPIServer(listenAddr string, helloProducer HelloProducer) *APIServer {
+func NewAPIServer(listenAddr string, hp HelloProducer, op OrderProducer) *APIServer {
 	return &APIServer{
 		listenAddr:    listenAddr,
-		helloProducer: helloProducer,
+		helloProducer: hp,
+		orderProducer: op,
 	}
 }
 
@@ -32,6 +35,7 @@ func (s *APIServer) createRouter() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/hello", makeHTTPHandleFunc(s.handleHello))
+	router.HandleFunc("/orders", makeHTTPHandleFunc(s.handleOrder))
 	return router
 }
 
@@ -39,8 +43,24 @@ func (s *APIServer) handleHello(_ http.ResponseWriter, _ *http.Request) error {
 	return s.helloProducer.SayHello()
 }
 
+func (s *APIServer) handleOrder(w http.ResponseWriter, r *http.Request) error {
+	if r.Method == "POST" {
+		return s.handleCreateOrder(r)
+	} else {
+		return fmt.Errorf("method not allowed %s", r.Method)
+	}
+}
+
+func (s *APIServer) handleCreateOrder(r *http.Request) error {
+	createOrderRequest := &OrderRequest{}
+	if err := json.NewDecoder(r.Body).Decode(&createOrderRequest); err != nil {
+		return err
+	}
+	return s.orderProducer.PlaceOrder(*createOrderRequest)
+}
+
 // helper functions
-func WriteJSON(w http.ResponseWriter, status int, v any) error {
+func writeJSON(w http.ResponseWriter, status int, v any) error {
 	// Note: header().Add calls need to happen before WriteHeader call
 	w.Header().Add("content-type", "application/json")
 	w.WriteHeader(status)
@@ -57,7 +77,7 @@ func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := f(w, r); err != nil {
 			//handle the error
-			WriteJSON(w, http.StatusBadRequest, ApiError{Error: err.Error()})
+			writeJSON(w, http.StatusBadRequest, ApiError{Error: err.Error()})
 		}
 	}
 }
