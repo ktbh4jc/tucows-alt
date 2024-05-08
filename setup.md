@@ -7,7 +7,9 @@ I am doing this on my Ubuntu computer, so I will be writing these instructions a
 - Go
   - https://go.dev/doc/install 
 - Docker
-  - https://docs.docker.com/engine/install/ubuntu/
+  - https://docs.docker.com/engine/install/
+- Docker Compose
+  - https://docs.docker.com/compose/install/ 
 - Make
   - `sudo apt-get -y install make` for ubuntu, `brew install make` on mac
 

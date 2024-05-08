@@ -23,3 +23,10 @@ Spot of context: I received this takehome on a Friday where I already had aftern
     > I am guessing local is fine, but I am going to try to dockerize my services.
 2) Do we have any concept of a user or of authentication?
     > I'm gonna guess no as there is nothing in the prompt. 
+
+## References
+This is my first time going from 0 to 1 on a multi-microservice go project without a principal or staff engineer to reach out to for help, and it's my first time using Kafka, so I am going to need to read up on some stuff as I go. In order to keep track, I am going to include my references here. 
+
+TC-03: 
+  https://docs.confluent.io/kafka-clients/go/current/overview.html 
+  https://hub.docker.com/_/golang
