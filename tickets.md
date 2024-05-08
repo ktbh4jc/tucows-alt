@@ -14,15 +14,15 @@ One upside of doing this via git is that I am able to break requirements up into
   - Write up my initial documentation framework
 - [x] TC-02: Define initial tickets
   - Convert the list of requirements from the prompt into a series to tickets to work on one by one
-- [ ] TC-03 Create API gateway and sample microservice
-  - sample microservice will just return "Hello World!"
-- [ ] TC-04 Dockerize exisiting portion.
-  - Future services will also be dockerized 
-  - `docker-compose.yml` in project root with `Dockerfile` in each microservice
+- [x] TC-03 Create API gateway and sample microservice
+  - sample microservice will just log "Hello World!"
+  - dockerize the things
+  - api should publish to Kafka
+  - sample service should read from it.
 
 ### OM Tickets
 - [ ] OM-01: Build Dockerfile for Order Manager
-  - Include update to root docer-compose
+  - Include update to root docker-compose
   - Once the API can hit the order manager, this ticket is done
 - [ ] OM-02: Define order type
   - POST to API with a JSON order
@@ -35,6 +35,6 @@ One upside of doing this via git is that I am able to break requirements up into
 - [ ] PM-03 Validate payment and push result to DB
 
 ### DB Tickets
-- [ ] DB-01 Stub out DB service 
+- [ ] DB-01 Stub out DB services
 - [ ] DB-02 Add Postgress docker container 
 - [ ] DB-03 Create Database Tables and pre-populate 

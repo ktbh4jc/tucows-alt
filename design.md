@@ -10,7 +10,10 @@ I also like to include debug checks that effectively bypass the order management
 ## Final Design
 
 ## Iteration as I worked
-V0.0: Before any code
+
+### V0.0 
+<details>
+<summary>Before any code </summary>
 
 Initial thoughts: this feels like it could be overcomplicating things, so I am going to see how things go as I further develop.
 
@@ -52,3 +55,58 @@ flowchart LR;
 ```
 \* Both debug and public APIs will be set up in the same location for now.  
 \*\* The Debug API and Service exist only for the sake of the takehome. In a real life environment I would take steps to lock them down properly, but in order ot make it easier to grade I wanted an easy way to get info from the DB through rest calls
+</details>
+
+
+### V0.1: 
+<details>
+<summary>After reading Kafka docs</summary>
+
+Thoughts: I'm going to pretend race conditions don't exist for the sake of this takehome. In a real environemnt there would be a hold put on any data that could be updated in one of the write reqeusts so that you couldn't do multiple modification requests and any read requests would get back an indicator that the data being read is partway through being changed. 
+
+```mermaid
+flowchart LR;
+
+  classDef white fill:white,stroke:#000,stroke-width:2px,color:#000
+
+  User("<img src='https://super.so/icon/dark/user.svg'; width='25' /> User"):::white
+
+  subgraph LogicServices
+    OrderManager(Order\nManager\nService\n-Docker):::white
+    PaymentManager(Payment\nManager\nService\n-Docker):::white
+  end
+
+  subgraph Kafka-Docker
+    KafkaOrderTopic(Order\nTopic):::white
+    KafkaDBWriteTopic(DB\nWrite\nTopic):::white
+    KafkaPaymentTopic(Payment\nTopic):::white
+  end
+
+  subgraph DB
+    DatabaseReader(Database\nReader\nService\n-Docker):::white
+    Postgres("<img src='https://super.so/icon/dark/database.svg'; width='40' />postgres\ndatabase\n-Docker"):::white
+    DatabaseWriterService(Database\nWriter\nService\n-Docker):::white
+  end
+
+  subgraph API-Docker
+    ReadRequest(Read Request):::white
+    WriteRequest(Write Request):::white
+  end
+
+  User <--> ReadRequest
+  User <--> WriteRequest
+
+  ReadRequest <--Sync REST Request--> DatabaseReader
+
+  WriteRequest --> KafkaOrderTopic --> OrderManager
+
+  DatabaseReader <--> Postgres
+  OrderManager --> KafkaDBWriteTopic
+  KafkaDBWriteTopic --> DatabaseWriterService
+  OrderManager --> KafkaPaymentTopic
+  PaymentManager --> KafkaDBWriteTopic
+  DatabaseWriterService --> Postgres
+  KafkaPaymentTopic --> PaymentManager
+```
+> The presense of - Docker indicates a docker container at that level
+</details>
