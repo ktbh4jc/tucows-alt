@@ -25,6 +25,18 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - kafka
+      - api
+    networks:
+      - kafka-network
+  
+  ordermanager:
+    container_name: ordermanager
+    build:
+      context: ./ordermanager 
+      dockerfile: Dockerfile
+    depends_on:
+      - kafka
+      - api
     networks:
       - kafka-network
 

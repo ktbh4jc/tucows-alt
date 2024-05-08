@@ -1,0 +1,40 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Tucows Alt",
+    "collectionId": "a4745179-e6d5-421c-a57e-4c4cfafb99eb",
+    "dateExported": "2024-05-08T04:28:24.935Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "cc6158ee-6537-4c60-97bd-787c44cda69b",
+            "colId": "a4745179-e6d5-421c-a57e-4c4cfafb99eb",
+            "containerId": "",
+            "name": "Say Hello",
+            "url": "localhost:8080/hello",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-08T04:17:35.071Z",
+            "modified": "2024-05-08T04:17:35.071Z",
+            "headers": []
+        },
+        {
+            "_id": "20d6e732-91fe-4830-a9ee-48e15abf3f67",
+            "colId": "a4745179-e6d5-421c-a57e-4c4cfafb99eb",
+            "containerId": "",
+            "name": "New Order",
+            "url": "localhost:8080/orders",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-05-08T04:17:43.685Z",
+            "modified": "2024-05-08T04:19:32.150Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"customerId\": 1,\n  \"productId\": 2,\n  \"count\": 3\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "DGHXnhcxQgXvnXpxFPVNK8mM3GpMIVhLgBuYUoOXuzxeIeHWrXD0lj-PyTrGXEaXwYLIThIBCnit6daEdbCMFg"
+}
