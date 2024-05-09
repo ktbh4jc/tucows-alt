@@ -2,7 +2,7 @@ package main
 
 // Currently doing 1 writer for all data types. Potential improvement could be splitting
 // out into customer/product/order/payment writers.
-// Using interface pattern so that we could migrate database systems with relativly little effort
+// Using interface pattern so that we could migrate database systems with relatively little effort
 // This allows my consumer to be DB agnostic
 type Writer interface {
 	CreateOrder(*Order) error
@@ -22,7 +22,7 @@ type Writer interface {
 	UpdateCustomer(*Customer) error
 
 	//Note: I include a full reset because I think it could be useful for testing
-	// I do not recomend doing this IRL.
+	// I do not recommend doing this IRL.
 	FullReset() error
 
 	Init() error

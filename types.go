@@ -1,4 +1,13 @@
+// A place to store all of the types used in this project.
+
 package main
+
+type OrderRequest struct {
+	CustomerId int `json:"customerId"`
+	ProductId  int `json:"productId"`
+	Count      int `json:"count"`
+	Intent     int `json:"intent"`
+}
 
 type Order struct {
 	ID         int    `json:"id"`
@@ -27,6 +36,10 @@ type Customer struct {
 	Name string `json:"name"`
 }
 
+type PlainIntent struct {
+	IntentNumber int `json:"intentNumber"`
+}
+
 type Intent struct {
 	ID           int `json:"id"`
 	IntentNumber int `json:"intentNumber"`
@@ -43,9 +56,4 @@ type OrderWithContext struct {
 	Status       string `json:"status"`
 	IntentNumber int    `json:"intentNumber"`
 	ProductCost  int    `json:"productCost"`
-}
-
-// Simply allows intents to be read for logging purposes
-type PlainIntent struct {
-	IntentNumber int `json:"intentNumber"`
 }
