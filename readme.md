@@ -24,9 +24,17 @@ Spot of context: I received this takehome on a Friday where I already had aftern
 2) Do we have any concept of a user or of authentication?
     > I'm gonna guess no as there is nothing in the prompt. 
 
+## A note on the lack of unit tests
+Normally I am a very unit-test forward engineer. However for this project I spent a lot of my time on the architecture and learning new technologies. This is my first forray into writing code with Kafka and the first time I have done Docker and Postgres work in about 4 years. Additionally I tend to follow the principal of unit testing logic more than architecture. That said, I am including a collection of REST calls though Thunder Client that demonstrate end-to-end testing. 
+
+For an example of a takehome where I was more familiar with the tech and had time to add unit tests, see https://github.com/ktbh4jc/esusu-domain-challenge 
+
 ## References
 This is my first time going from 0 to 1 on a multi-microservice go project without a principal or staff engineer to reach out to for help, and it's my first time using Kafka, so I am going to need to read up on some stuff as I go. In order to keep track, I am going to include my references here. 
 
 TC-03: 
   https://docs.confluent.io/kafka-clients/go/current/overview.html 
   https://hub.docker.com/_/golang
+
+DB-01:
+  https://hub.docker.com/_/postgres 

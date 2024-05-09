@@ -19,6 +19,6 @@ func main() {
 	}
 	hp := NewHelloProducerImpl(p, "HELLO")
 	op := NewOrderProducerImpl(p, "ORDER")
-	server := NewAPIServer(":8080", hp, op)
+	server := NewAPIServer(":3000", hp, op)
 	server.Run()
 }

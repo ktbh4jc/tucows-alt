@@ -21,13 +21,11 @@ One upside of doing this via git is that I am able to break requirements up into
   - sample service should read from it.
 
 ### OM Tickets
-- [ ] OM-01: Build Dockerfile for Order Manager
+- [x] OM-01: Build Initial Order Manager
   - Include update to root docker-compose
-  - Once the API can hit the order manager, this ticket is done
-- [ ] OM-02: Define order type
   - POST to API with a JSON order
   - For now, just log the order
-- [ ] OM-03: Publish order to async message broker (leaning Kafka, but we will see)
+- [ ] OM-02: Publish order to async message broker (leaning Kafka, but we will see)
 
 ### PM Tickets
 - [ ] PM-01 Build Dockerfile for Payment Manager 

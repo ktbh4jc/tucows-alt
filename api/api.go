@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
+	"math/rand/v2"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -56,6 +58,8 @@ func (s *APIServer) handleCreateOrder(r *http.Request) error {
 	if err := json.NewDecoder(r.Body).Decode(&createOrderRequest); err != nil {
 		return err
 	}
+	// Not the best way to get an intent, but works for now
+	createOrderRequest.Intent = rand.IntN(math.MaxInt)
 	return s.orderProducer.PlaceOrder(*createOrderRequest)
 }
 

@@ -5,7 +5,7 @@ services:
     environment:
       - ZOOKEEPER_CLIENT_PORT=2181
     networks:
-      - kafka-network
+      - tucows-network
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -16,7 +16,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     networks:
-      - kafka-network
+      - tucows-network
 
   helloservice:
     container_name: helloservice
@@ -27,7 +27,7 @@ services:
       - kafka
       - api
     networks:
-      - kafka-network
+      - tucows-network
   
   ordermanager:
     container_name: ordermanager
@@ -38,8 +38,19 @@ services:
       - kafka
       - api
     networks:
-      - kafka-network
+      - tucows-network
 
+  databasewriter:
+    container_name: databasewriter
+    build:
+      context: ./databasewriter 
+      dockerfile: Dockerfile
+    depends_on:
+      - kafka
+      - api
+      - db
+    networks:
+      - tucows-network
 
   api:
     container_name: api
@@ -49,11 +60,30 @@ services:
     depends_on:
       - kafka
     networks:
-      - kafka-network
+      - tucows-network
     ports:
-      - "8080:8080"
+      - 3000:3000
+  
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: SuperSecurePassword2
+    networks:
+      - tucows-network
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks: 
+      - tucows-network
 
 
 networks:
-  kafka-network:
+  tucows-network:
     driver: bridge
