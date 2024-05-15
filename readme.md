@@ -3,6 +3,9 @@
 This is where I will walk you through my general approach to the project. 
 
 ## A note on the missing functionality
+
+> Note: I set up a "continued" branch to work on expanding my solution under less of a time constraint.
+
 Lets address the elephant in the room, and I don't just mean the Postgres mascot. This solution is about 30% of the total expected functionality and has 0 unit tests. There are a few reasons for this. This is my first foray into writing code with Kafka and the first time I have done Docker and Postgres work in about 4 years. All in all, between learning those technologies and writing what I have here, I spent about 55 hours on this take-home. Doing any more feels like both an unfair ask of me and an unrealistic expectation of what I can do in the timeline. 
 
 That said, when I realized I wasn't likely going to get the full project done I pivoted my energy to documenting my full design in `design.md`. I designed this solution to be incredibly open to extension and I believe that the other 70% of functionality would likely only be another 10-15 hours. 
